@@ -14,9 +14,9 @@ Originally crafted by [adamvr](https://github.com/adamvr/node-log-dissector.git)
 
 ```javascript
 //you don't have to specify the particular dissector here - but we do
-var dissector = require('node-log-dissector').dissectors['s3'];
+const dissector = require('node-log-dissector').dissectors['s3'];
 
-var stream = fs.createReadStream('./my_s3.log', {flags: 'r', encoding: 'utf-8', autoClose: true}).on('readable', function() {
+const stream = fs.createReadStream('./my_s3.log', {flags: 'r', encoding: 'utf-8', autoClose: true}).on('readable', function() {
     self.read(0);
 });
 
@@ -26,22 +26,30 @@ stream.on('data', function(data) {
 ```
 
 ## Log Dissectors included
+
 - ssh invalid users
 - ssh login
 - ssh logout
 - sudo failure
 - sudo sucess
-- Amazon S3 access logs
-- Amazon CloudFront access logs (v1.0)
-- Amazon ElasticLoaderBalancer (ELB)
+- AWS S3 access logs
+- AWS CloudFront access logs (v1.0)
+- AWS Elastic Load Balancer (ELB)
 - Level3 CDN access logs
 
 ## Changelog
+
+### 2020-06-17 v2.0.0
+- made it a bit more ES6
+- removed support for Node < 12
+- Changed licence to MIT- knock yourself out
+- Was going to rip out lodash from tests but couldn't be bothered, just updated lib instead
+
 ### 2016-09-19
-- Add disector to parse ElasticLoaderBalancer (ELB) of Amazon AWS
+- Add disector to parse AWS Elastic Loade Balancer (ELB) logs
 
 ### 2013-10-18
-- Added license.md
+- Added license.md - BSD
 - Published independently of original project <adamvr> git://github.com/adamvr/node-log-dissector.git
 
 ### 2013-10-09

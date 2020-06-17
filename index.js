@@ -1,22 +1,22 @@
-var fs = require('fs')
+const fs = require('fs')
     , path = require('path');
 
-var dissectors = {};
+const dissectors = {};
 
-var files = fs.readdirSync(path.join(__dirname, 'dissectors'));
+const files = fs.readdirSync(path.join(__dirname, 'dissectors'));
 
 function exec(dissector) {
-    var regex = dissector.regex
+    let regex = dissector.regex
         , map = dissector.map
         , type = dissector.type;
 
     return function (string) {
-        var matches = string.match(regex)
+        let matches = string.match(regex)
             , ret = {};
 
         if (!matches) return null;
-        for (var k in map) {
-            var v = map[k];
+        for (let k in map) {
+            let v = map[k];
             ret[v] = matches[k];
         }
 
@@ -25,8 +25,8 @@ function exec(dissector) {
     }
 }
 
-for (var i = 0; i < files.length; i++) {
-    var module = require(path.join(__dirname, 'dissectors', files[i]));
+for (let i = 0; i < files.length; i++) {
+    let module = require(path.join(__dirname, 'dissectors', files[i]));
     if (!module || !module.regex || !module.map || !module.type) continue;
     module.dissect = exec(module);
     dissectors[module['type']] = module;
