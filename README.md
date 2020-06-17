@@ -2,8 +2,8 @@
 
 [![NPM](https://nodei.co/npm/node-log-dissector.png?downloads=true)](https://nodei.co/npm/node-log-dissector/)
 
-A toolkit for dissecting/parsing information from logfiles using Node.js.
-If you add your own please shout them back if you think they'll be useful.
+A no dependecy utility for dissecting/parsing information from logfiles using Node.
+If you add your own please shout them back via PR if you think they'll be useful.
 
 Originally crafted by [adamvr](https://github.com/adamvr/node-log-dissector.git)
 
