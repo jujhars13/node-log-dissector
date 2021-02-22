@@ -2,15 +2,17 @@
     "author": "Jujhar Singh <jujhar@jujhar.com>",
     "name": "node-log-dissector",
     "description": "A toolkit for dissecting and parsing log files",
-    "version": "2.0.0",
+    "version": "2.1.0",
     "repository": {
         "type": "git",
         "url": "git://github.com/jujhars13/node-log-dissector"
     },
-    "contributors": [{
-        "name": "Adam Rudd <adam.rudd@uqconnect.edu.au>",
-        "url": "git://github.com/adamvr/node-log-dissector.git"
-    }],
+    "contributors": [
+        {
+            "name": "Adam Rudd <adam.rudd@uqconnect.edu.au>",
+            "url": "git://github.com/adamvr/node-log-dissector.git"
+        }
+    ],
     "keywords": [
         "log files",
         "parse log files",
@@ -23,15 +25,13 @@
     ],
     "main": "index.js",
     "readmeFilename": "README.md",
-    "dependencies": {},
     "devDependencies": {
-        "lodash": "^4.17.15",
-        "mocha": "^8.0.1",
+        "lodash": "^4.17.21",
+        "mocha": "^8.3.0",
         "should": "^13.2.3"
     },
     "scripts": {
         "test": "mocha"
     },
-    "optionalDependencies": {},
-    "license": "BSD"
+    "license": "MIT"
 }
