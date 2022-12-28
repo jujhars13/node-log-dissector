@@ -13,7 +13,7 @@ Originally crafted by [adamvr](https://github.com/adamvr/node-log-dissector.git)
 ## Example Usage
 
 ```javascript
-//you don't have to specify the particular dissector here - but we do
+// you don't have to specify the particular dissector here - but we do
 const dissector = require('node-log-dissector').dissectors['s3'];
 
 const stream = fs.createReadStream('./my_s3.log', {flags: 'r', encoding: 'utf-8', autoClose: true}).on('readable', function() {

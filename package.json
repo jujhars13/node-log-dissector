@@ -2,7 +2,7 @@
     "author": "Jujhar Singh <jujhar@jujhar.com>",
     "name": "node-log-dissector",
     "description": "A toolkit for dissecting and parsing log files",
-    "version": "2.1.0",
+    "version": "2.2.0",
     "repository": {
         "type": "git",
         "url": "git://github.com/jujhars13/node-log-dissector"
@@ -27,7 +27,7 @@
     "readmeFilename": "README.md",
     "devDependencies": {
         "lodash": "^4.17.21",
-        "mocha": "^9.2.1",
+        "mocha": "^10.2.0",
         "should": "^13.2.3"
     },
     "scripts": {
