@@ -39,10 +39,15 @@ stream.on('data', function(data) {
 
 ## Changelog
 
+### 2022-12-28 v2.2.1
+- removed test support for Node < 14
+- bumped devDependency versions to turn of Vulnerability alarms
+- Was going to rip out lodash from tests but couldn't be bothered, just updated lib instead
+
 ### 2020-06-17 v2.0.0
 - made it a bit more ES6
 - removed support for Node < 12
-- Changed licence to MIT- knock yourself out
+- Changed licence to MIT - knock yourself out
 - Was going to rip out lodash from tests but couldn't be bothered, just updated lib instead
 
 ### 2016-09-19
