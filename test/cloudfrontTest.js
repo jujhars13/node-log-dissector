@@ -4,7 +4,6 @@
  * 2013-10-09
  * jujhars13
  */
-var _ = require('lodash');
 var dissector = require('../index').dissectors['cloudfront'];
 
 
@@ -25,7 +24,7 @@ describe('s3', function () {
         it('should return a suitable array for valid log lines', function () {
 
             //foreach over our test data array and test
-            _(valid_log_lines).forEach(function (line, key) {
+            Object.entries(valid_log_lines).forEach(function ([key, line]) {
                 var data_should_be = {
                     date: '2015-01-28',
                     time: '18:41:47',
@@ -43,7 +42,7 @@ describe('s3', function () {
                 var data = dissector.dissect(line);
 
                 //iterate over our data array and compare values with what's returned
-                _(data_should_be).forEach(function (value, data_key) {
+                Object.entries(data_should_be).forEach(function ([data_key, value]) {
 
                     (value).should.equal(data[data_key]);
                 });
@@ -81,7 +80,7 @@ describe('s3', function () {
             var data = dissector.dissect(testData);
 
             //iterate over our data array and compare values with what's returned
-            _(data_should_be).forEach(function (value, data_key) {
+            Object.entries(data_should_be).forEach(function ([data_key, value]) {
                 (value).should.equal(data[data_key]);
             });
         });

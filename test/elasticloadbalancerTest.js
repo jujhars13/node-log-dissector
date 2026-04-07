@@ -5,7 +5,6 @@
  * Welington Sampaio
  */
 
-var _ = require('lodash');
 var dissector = require('../index').dissectors['elasticloadbalancer'];
 
 //test data
@@ -24,7 +23,7 @@ describe('elasticloadbalancer', function () {
         it('should return a suitable array for valid log lines', function () {
 
             //foreach over our test data array and test
-            _(valid_log_lines).forEach(function (line, key) {
+            Object.entries(valid_log_lines).forEach(function ([key, line]) {
                 var data_should_be = {
                     timestamp: '2015-05-13T23:39:43.945958Z',
                     elb: 'my-loadbalancer',
@@ -54,7 +53,7 @@ describe('elasticloadbalancer', function () {
                 var data = dissector.dissect(line);
 
                 //iterate over our data array and compare values with what's returned
-                _(data_should_be).forEach(function (value, data_key) {
+                Object.entries(data_should_be).forEach(function ([data_key, value]) {
                     (value).should.equal(data[data_key]);
                 });
 
@@ -93,7 +92,7 @@ describe('elasticloadbalancer', function () {
             var data = dissector.dissect(testData);
 
             //iterate over our data array and compare values with what's returned
-            _(data_should_be).forEach(function (value, data_key) {
+            Object.entries(data_should_be).forEach(function ([data_key, value]) {
                 (value).should.equal(data[data_key]);
             });
         });

@@ -26,8 +26,7 @@
     "main": "index.js",
     "readmeFilename": "README.md",
     "devDependencies": {
-        "lodash": "^4.17.21",
-        "mocha": "^10.8.2",
+        "mocha": "^11.7.5",
         "should": "^13.2.3"
     },
     "scripts": {

@@ -4,7 +4,6 @@
  * 2013-10-09, updated 2020-06-17
  * jujhars13
  */
-var _ = require('lodash');
 const dissector = require('../index').dissectors['s3'];
 
 // fixture data
@@ -23,7 +22,7 @@ describe('s3', function () {
         it('should return a suitable array for valid log lines', function () {
 
             //foreach over our test data array and test
-            _(valid_log_lines).forEach(function (line, key) {
+            Object.entries(valid_log_lines).forEach(function ([key, line]) {
                 let data_should_be = {
                     timestamp: '[07/May/2013:19:01:44 +0000]',
                     verb: 'GET',
@@ -39,7 +38,7 @@ describe('s3', function () {
                 let data = dissector.dissect(line);
 
                 //iterate over our data array and compare values with what's returned
-                _(data_should_be).forEach(function (value, data_key) {
+                Object.entries(data_should_be).forEach(function ([data_key, value]) {
                     (value).should.equal(data[data_key]);
                 });
 
@@ -76,7 +75,7 @@ describe('s3', function () {
             var data = dissector.dissect(testData);
 
             //iterate over our data array and compare values with what's returned
-            _(data_should_be).forEach(function (value, data_key) {
+            Object.entries(data_should_be).forEach(function ([data_key, value]) {
                 (value).should.equal(data[data_key]);
             });
         });

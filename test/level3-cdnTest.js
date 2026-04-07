@@ -4,7 +4,6 @@
  * 2013-10-09
  * jujhars13
  */
-var _ = require('lodash');
 var dissector = require('../index').dissectors['level3-cdn'];
 
 
@@ -28,7 +27,7 @@ describe('Level3-cdn', function () {
         it('should return a suitable array for valid log lines', function () {
 
             //foreach over our test data array and test
-            _(valid_log_lines).forEach(function (line, key) {
+            Object.entries(valid_log_lines).forEach(function ([key, line]) {
                 var data_should_be = {
                     date: '2013-10-08',
                     time: '10:13:24.250',
@@ -45,7 +44,7 @@ describe('Level3-cdn', function () {
                 var data = dissector.dissect(line);
 
                 //iterate over our data array and compare values with what's returned
-                _(data_should_be).forEach(function (value, data_key) {
+                Object.entries(data_should_be).forEach(function ([data_key, value]) {
                     (data[data_key]).should.equal(value);
                 });
 
