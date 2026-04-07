@@ -26,6 +26,7 @@ function exec(dissector) {
 }
 
 for (let i = 0; i < files.length; i++) {
+    if (files[i].endsWith('.test.js')) continue;
     let module = require(path.join(__dirname, 'dissectors', files[i]));
     if (!module || !module.regex || !module.map || !module.type) continue;
     module.dissect = exec(module);

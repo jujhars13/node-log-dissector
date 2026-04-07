@@ -1,12 +1,8 @@
-/*
- * to test s3 log parser
- * using the mocha test framework 
- * 2013-10-09, updated 2020-06-17
- * jujhars13
- */
+const { describe, it } = require('node:test');
+const assert = require('node:assert/strict');
+
 const dissector = require('../index').dissectors['s3'];
 
-// fixture data
 const valid_log_lines = {
     1: '89db1f87ef900402d4ec4678ec2d46ef9c503f28438eeaeb3a8409ee06106660 buto-s3-cdn-origin [07/May/2013:19:01:44 +0000] 91.229.127.20 - 0B7A7459271E19B0 REST.GET.OBJECT live/videos/Bbgwg/1/2pgGq/1byte.txt "GET /butotv/live/1/6tYhhg1/6tYhhg1_frame_custom_0000.jpg HTTP/1.1" 200 - 1 1 1 12 "-" "curl/7.29.0" -',
     100: '89db1f87ef900402d4ec4678ec2d46ef9c503f28438eeaeb3a8409ee06106660 buto-s3-cdn-origin [07/May/2013:19:01:44 +0000] 91.229.127.20 - 0B7A7459271E19B0 REST.GET.OBJECT live/videos/Bbgwg/1/2pgGq/1byte.txt "GET /butotv/live/1/6tYhhg1/6tYhhg1_frame_custom_0000.jpg HTTP/1.1" 200 - 100 1 100 12 "-" "curl/7.29.0" -',
@@ -16,14 +12,10 @@ const valid_log_lines = {
 };
 
 describe('s3', function () {
-    //define our data and objects for the tests
-
     describe('.dissect', function () {
         it('should return a suitable array for valid log lines', function () {
-
-            //foreach over our test data array and test
             Object.entries(valid_log_lines).forEach(function ([key, line]) {
-                let data_should_be = {
+                const data_should_be = {
                     timestamp: '[07/May/2013:19:01:44 +0000]',
                     verb: 'GET',
                     uri: '/butotv/live/1/6tYhhg1/6tYhhg1_frame_custom_0000.jpg',
@@ -34,21 +26,18 @@ describe('s3', function () {
                     'user-agent': 'curl/7.29.0',
                     type: 's3'
                 };
-                // parse the record
-                let data = dissector.dissect(line);
+                const data = dissector.dissect(line);
 
-                //iterate over our data array and compare values with what's returned
                 Object.entries(data_should_be).forEach(function ([data_key, value]) {
-                    (value).should.equal(data[data_key]);
+                    assert.equal(value, data[data_key]);
                 });
-
             });
         });
 
-        it("should dissect all values from logs without failure", function () {
-            var testData = '04db613bd000d07badc32d16138efc3eba3e96c6c3ca19365997ba468a6ac850 test.repo.io [10/Apr/2013:18:27:38 +0000] 54.225.77.116 arn:aws:iam::581309990414:user/test-registry 4981BCEDE3870133 REST.PUT.OBJECT incompatible-version/incompatible-version-1.0.0.zip "PUT /test.repo.io/incompatible-version/incompatible-version-1.0.0.zip HTTP/1.1" 200 - - 504 89 32 "-" "aws-sdk-nodejs/v0.9.7-pre.8 linux/v0.8.22" -';
+        it('should dissect all values from logs without failure', function () {
+            const testData = '04db613bd000d07badc32d16138efc3eba3e96c6c3ca19365997ba468a6ac850 test.repo.io [10/Apr/2013:18:27:38 +0000] 54.225.77.116 arn:aws:iam::581309990414:user/test-registry 4981BCEDE3870133 REST.PUT.OBJECT incompatible-version/incompatible-version-1.0.0.zip "PUT /test.repo.io/incompatible-version/incompatible-version-1.0.0.zip HTTP/1.1" 200 - - 504 89 32 "-" "aws-sdk-nodejs/v0.9.7-pre.8 linux/v0.8.22" -';
 
-            var data_should_be = {
+            const data_should_be = {
                 owner: '04db613bd000d07badc32d16138efc3eba3e96c6c3ca19365997ba468a6ac850',
                 bucket: 'test.repo.io',
                 timestamp: '[10/Apr/2013:18:27:38 +0000]',
@@ -71,12 +60,10 @@ describe('s3', function () {
                 type: 's3'
             };
 
-            //parse the record
-            var data = dissector.dissect(testData);
+            const data = dissector.dissect(testData);
 
-            //iterate over our data array and compare values with what's returned
             Object.entries(data_should_be).forEach(function ([data_key, value]) {
-                (value).should.equal(data[data_key]);
+                assert.equal(value, data[data_key]);
             });
         });
     });

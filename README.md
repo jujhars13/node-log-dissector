@@ -39,7 +39,14 @@ stream.on('data', function(data) {
 
 ## Changelog
 
+### 2026-04-07 v3.0.0
+
+- removes all npm deps and just uses pure node 24
+- moves tests around
+- removes travis ci, adds Github CI
+
 ### 2022-12-28 v2.2.1
+
 - removed test support for Node < 14
 - bumped devDependency versions to turn of Vulnerability alarms
 - Was going to rip out lodash from tests but couldn't be bothered, just updated lib instead
